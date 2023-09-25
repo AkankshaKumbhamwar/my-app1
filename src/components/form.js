@@ -26,6 +26,7 @@ const Form = ({ cities }) => {
                 </option>
               ))}
             </select>
+            <select></select>
           </div>
         </form>
       </div>
