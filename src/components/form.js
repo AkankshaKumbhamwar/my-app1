@@ -7,7 +7,7 @@ const Form = ({ cities }) => {
 
   const getVillages = async (city) => {
     try {
-      let url = `http://13.48.67.44/user/city?ct=${city}&ac=70&l=0`;
+      let url = `http://13.48.67.44/user/city?ct=${city}&l=0`;
       const res = await fetch(url);
       const responseData = await res.json();
       const villagesData = responseData.data;
@@ -22,6 +22,7 @@ const Form = ({ cities }) => {
     if (selectedCity) {
       // Fetch villages when a city is selected
       getVillages(selectedCity);
+
     }
   }, [selectedCity]); // Include selectedCity as a dependency
 
@@ -30,7 +31,7 @@ const Form = ({ cities }) => {
     setSelectedCity(selectedValue); // Update the selected city
     console.log("Selected city:", selectedValue); // Add this line for debugging
   };
-
+console.log("vl",villages)
   return (
     <div>
       <div className="bg"></div>
@@ -62,6 +63,7 @@ const Form = ({ cities }) => {
             {/* Villages dropdown */}
             <select className="text-box" id="village" name="village">
               <option value="">Village</option>
+              
               {Array.isArray(villages) ? (
                 villages.map((villageData) => (
                   <option key={villageData.id} value={villageData.name}>
