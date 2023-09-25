@@ -1,49 +1,35 @@
-// formPage.js
-
-import React, { useState } from 'react';
+// FormPage.js
+import React, { useState, useEffect } from 'react';
 import Form from './form';
-import State from './stateApi'; // Import your data directly
+
+const url = "http://13.48.67.44/user/city?l=0";
 
 const FormPage = () => {
-  const [stateData, setStateData] = useState(State);
-console.log(State);
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        
+        setCities(data.data); // Access the 'data' property in the response
+        console.log("formPage",cities)
+      })
+      .catch((error) => {
+        console.error('Fetch error:', error);
+      });
+  }, []);
+
   return (
     <div>
-      <Form stateData={stateData}/>
+      <Form cities={cities} />
     </div>
   );
-}
+};
 
 export default FormPage;
-
-
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import Form from './Form';
-
-// const FormPage = () => {
-//   const [stateData, setStateData] = useState([]);
-  
-//   useEffect(() => {
-//     // Fetch data from your API here
-//     fetch('your-api-endpoint')
-//       .then((response) => response.json())
-//       .then((data) => {
-//         setStateData(data); // Assuming the data structure matches the nested hierarchy
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching data:', error);
-//       });
-//   }, []);
-
-//   return (
-//     <div>
-//       <Form stateData={stateData} />
-//     </div>
-//   );
-// };
-
-// export default FormPage;
