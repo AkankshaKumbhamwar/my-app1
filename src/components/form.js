@@ -53,13 +53,13 @@ const Form = ({ cities }) => {
       const res = await fetch(url);
       const responseData = await res.json();
       const villagesData = responseData.data;
-  
+
       setVillages(villagesData);
     } catch (error) {
       console.log(error);
     }
   };
-  
+
 
   useEffect(() => {
     if (selectedCity) {
@@ -79,7 +79,7 @@ const Form = ({ cities }) => {
       getVillagesByAssembly(selectedCity, selectedAssemblyNo);
     }
   }, [selectedCity, selectedAssemblyNo]);
-  
+
   const handleCityChange = (e) => {
     const selectedValue = e.target.value;
     setSelectedCity(selectedValue);
@@ -161,15 +161,14 @@ const Form = ({ cities }) => {
                 </option>
               ))}
             </select>
-            {/* Villages dropdown */}
             <select className="text-box" id="village" name="village">
-  <option value="">Village</option>
-  {villages.length > 0 && villages.map((villageData) => (
-    <option key={villageData.id} value={villageData.name}>
-      {villageData.name}
-    </option>
-  ))}
-</select>
+              <option value="">Village</option>
+              {villages.map((villageData) => (
+                <option key={villageData.id} value={villageData.name}>
+                  {villageData.name}
+                </option>
+              ))}
+            </select>
           </div>
         </form>
       </div>
