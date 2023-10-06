@@ -96,7 +96,7 @@ const Form = ({ cities }) => {
     setVillages([]); // Clear villages
   };
   useEffect(() => {
-    console.log("Villages:", villages); // Add this line to check if villages are being fetched.
+    console.log("Villages data:", villages); // Add this line to check if villages are being fetched.
   }, [villages]);
 
   const handleAssemblyNoChange = (e) => {
@@ -165,7 +165,7 @@ const Form = ({ cities }) => {
               <option value="">Village</option>
               {villages.map((villageData) => (
                 <option key={villageData.id} value={villageData.name}>
-                  {villageData.name}
+                  {villageData.village}
                 </option>
               ))}
             </select>
